@@ -1,4 +1,3 @@
-import json
 from flask import Flask, jsonify
 import numpy as np
 import requests

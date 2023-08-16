@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/recommendations/(\\d+)",
+        "dest": "/recommendations/:1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/"
+      }
+    ]
+}
+  
