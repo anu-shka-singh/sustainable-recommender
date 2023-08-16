@@ -2,17 +2,18 @@
     "version": 2,
     "builds": [
       {
+        "src": "app.py",
         "use": "@vercel/python"
       }
     ],
     "routes": [
       {
-        "src": "/recommendations/(\\d+)",
-        "dest": "/recommendations/:1"
+        "src": "/recommendations/([0-9]+)",
+        "dest": "app.py"
       },
       {
         "src": "/(.*)",
-        "dest": "/"
+        "dest": "app.py"
       }
     ]
 }
