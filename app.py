@@ -1,3 +1,4 @@
+import json
 from flask import Flask, jsonify
 import numpy as np
 import requests
@@ -15,14 +16,13 @@ def get_recommendations(product_index, num_recommendations=5):
     r = requests.get(url = URL).json()
        
     similar_products = np.argsort(similarity_matrix[product_index])[::-1]
-    max_range = r[product_index]['price (in Rs)']
     
     recommended_indices=[]
     for i in similar_products:
         if(i==product_index):
             continue
         
-        if (r[i]['carbon_footprint (kg)'] < r[product_index]['carbon_footprint (kg)'] and r[i]['price (in Rs)'] <= max_range+5000):
+        if (r[i]['carbon_footprint (kg)'] < r[product_index]['carbon_footprint (kg)'] and r[i]['price (in Rs)'] <= r[product_index]['price (in Rs)']+10000):
             recommended_indices.append(int(i))
         if(len(recommended_indices)==num_recommendations):
             break
